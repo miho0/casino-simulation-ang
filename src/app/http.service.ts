@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {GetGameResultsDto} from "../models/GetGameResultsDto";
+import {GetBlackjackGameResultsDto} from "../models/GetBlackjackGameResultsDto";
+import {Observable} from "rxjs";
+import {BlackjackGameResult} from "../models/BlackjackGameResult";
+import {GetProbabilityInformationDto} from "../models/GetProbabilityInformationDto";
+import {BlackjackProbabilityInformation} from "../models/BlackjackProbabilityInformation";
 
 @Injectable({
   providedIn: 'root'
@@ -10,13 +14,19 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
-  public getGameResults(gatGameResultsDto: GetGameResultsDto){
-    return this.httpClient.get(this.baseUrl +
-      "Blackjack/GetGameResults?InitialBalance=" + gatGameResultsDto.InitialBalance +
-      "&BettingAmount=" + gatGameResultsDto.BettingAmount +
-      "&Goal=" + gatGameResultsDto.Goal)
+  public getGameResults(getGameResultsDto: GetBlackjackGameResultsDto): Observable<BlackjackGameResult[]>{
+    return this.httpClient.get<BlackjackGameResult[]>(this.baseUrl +
+      "Blackjack/GetGameResults?InitialBalance=" + getGameResultsDto.InitialBalance +
+      "&BettingAmount=" + getGameResultsDto.BettingAmount +
+      "&Goal=" + getGameResultsDto.Goal)
   }
-}
 
-// https://localhost:44369/api/chart?InitialBalance=100&BettingAmount=10&Goal=200
-// https://localhost:44369/api/Blackjack/GetGameResults?InitalBalance=100&BettingAmount=10&Goal=200
+  public getProbabilityInformation(getProbabilityInformationDto: GetProbabilityInformationDto): Observable<BlackjackProbabilityInformation> {
+    return this.httpClient.get<BlackjackProbabilityInformation>(this.baseUrl +
+      "Blackjack/GetProbability?InitialBalance=" + getProbabilityInformationDto.InitialBalance +
+      "&BettingAmount=" + getProbabilityInformationDto.BettingAmount +
+      "&Goal=" + getProbabilityInformationDto.Goal +
+      "&itterations=" + getProbabilityInformationDto.Iterations)
+  }
+
+}

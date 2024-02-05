@@ -1,0 +1,57 @@
+<div class="main">
+  <h2>Game Summary</h2>
+  <p>View all the games from your latest simulated session.</p>
+  <table mat-table class="table" *ngIf="gameResults" [dataSource]="gameResults">
+
+    <ng-container matColumnDef="index">
+      <mat-header-cell *matHeaderCellDef> # </mat-header-cell>
+      <mat-cell *matCellDef="let i = index"> {{ i + 1 }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="bet">
+      <mat-header-cell *matHeaderCellDef> Bet </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.bet}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="playerCards">
+      <mat-header-cell *matHeaderCellDef> Player Cards </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{joinCards(game.playerCards)}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dealerCards">
+      <mat-header-cell *matHeaderCellDef> Dealer Cards </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{joinCards(game.dealerCards)}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="initialDecision">
+      <mat-header-cell *matHeaderCellDef> Initial Decision </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.initialDecision}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="playerTotal">
+      <mat-header-cell *matHeaderCellDef> Player Total </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.playerTotal}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dealerTotal">
+      <mat-header-cell *matHeaderCellDef> Dealer Total </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.dealerTotal}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="result">
+      <mat-header-cell *matHeaderCellDef> Result </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.result}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="endBalance">
+      <mat-header-cell *matHeaderCellDef> End Balance </mat-header-cell>
+      <mat-cell *matCellDef="let game"> {{game.endBalance}} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row *matHeaderRowDef="columnsToDisplay"></mat-header-row>
+    <mat-row *matRowDef="let myRowData; columns: columnsToDisplay"></mat-row>
+
+
+  </table>
+</div>

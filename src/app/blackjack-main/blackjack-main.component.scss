@@ -1,0 +1,56 @@
+.single-session {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: 50vh;
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.single-session-left {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.single-session-right {
+  width: 55%;
+}
+
+.button-container{
+  width: 100%;
+  display: flex;
+  gap: 30px;
+}
+
+.left-btn, .right-btn{
+  width: 100%;
+}
+
+
+.probability {
+  display: flex;
+  gap: 4rem;
+}
+
+.probability-left {
+  width: 35%;
+}
+
+.probability-right {
+  margin: auto;
+  font-size: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.left-form, .right-form {
+  display: flex;
+  gap: 2rem;
+}

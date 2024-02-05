@@ -1,3 +1,82 @@
-<h1>Casino simulation</h1>
+<div class="main">
+  <div class="single-session">
+    <div class="single-session-left">
+      <div class="single-session-desc">
+        <h2>Simulate a single blackjack session</h2>
+        <p>Here, you can simulate a random single session.</p>
+        <p>Just tell us your initial balance, your starting bet and your desired goal. A simulation will then be run, assuming perfect strategy.</p>
+        <p>The simulation will stop once your goal is reached, or once your balance hits zero. You will be able to see how you would do in this simulated example.</p>
+        <b>Please note, this is just one simulation, so anything can happen!</b>
+      </div>
+      <form class="form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Initial Balance" type="number" [(ngModel)]="getGameResultDto.InitialBalance" name="initialBalance">
+        </mat-form-field>
 
-<button (click)="getData()">Click me</button>
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Betting Amount" type="number" [(ngModel)]="getGameResultDto.BettingAmount" name="bettingAmount">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Goal" type="number" [(ngModel)]="getGameResultDto.Goal" name="goal">
+        </mat-form-field>
+
+        <div class="button-container">
+          <button mat-raised-button color="primary" (click)="onSingleSessionSubmit()" class="left-btn">Simulate session</button>
+          <button mat-raised-button color="primary" [routerLink]="['summary']" class="right-btn" [disabled]="gameResults == undefined">Game summary</button>
+        </div>
+
+      </form>
+
+      <div class="game-result">
+        <p class="success" *ngIf="result && gameResults">Result: You have reached your goal after {{gameResults.length}} rounds!
+          For details, see the chart to the right.</p>
+        <p class="failure" *ngIf="!result && gameResults">Result: Your balance reached 0 after {{gameResults.length}} rounds.
+          For details, see the chart to the right.</p>
+      </div>
+    </div>
+
+    <div class="single-session-right">
+      <app-blackjack-chart [gameResults]="gameResults" [startingAmount]="getGameResultDto.InitialBalance"
+                           [goal]="getGameResultDto.Goal" *ngIf="gameResults" ></app-blackjack-chart>
+    </div>
+  </div>
+  <div class="probability">
+    <div class="probability-left">
+      <div class="probability-desc">
+        <h2>Simulate multiple blackjack sessions and get success probability</h2>
+        <p>Here, you can simulate multiple blackjack sessions.</p>
+        <p>Provide information about a single session, along with the number of iterations (sessions) you wish to simulate. More sessions will produce more accurate results.</p>
+        <p>The simulation will run, and you will get the probability of a single session being successful (reaching your desired goal), along with the average amount of games played per session. </p>
+      </div>
+      <form class="form">
+        <div class="left-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Initial Balance" type="number" [(ngModel)]="getProbabilityInformationDto.InitialBalance" name="initialBalance">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Betting Amount" type="number" [(ngModel)]="getProbabilityInformationDto.BettingAmount" name="bettingAmount">
+          </mat-form-field>
+        </div>
+
+        <div class="right-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Goal" type="number" [(ngModel)]="getProbabilityInformationDto.Goal" name="goal">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Iterations" type="number" [(ngModel)]="getProbabilityInformationDto.Iterations" name="iterations">
+          </mat-form-field>
+        </div>
+
+        <button mat-raised-button color="primary" (click)="onMultipleSessionsSubmit()">Simulate sessions</button>
+      </form>
+    </div>
+    <div class="probability-right">
+      <p *ngIf="probabilityLoading">Loading...</p>
+      <p *ngIf="!probabilityLoading && probabilityInformation">Probability of success: {{probabilityInformation.probability}}%</p>
+      <p *ngIf="!probabilityLoading && probabilityInformation">Average rounds played: {{probabilityInformation.averageRoundsPlayed}}</p>
+    </div>
+  </div>
+</div>
