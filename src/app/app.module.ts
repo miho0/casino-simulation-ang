@@ -13,13 +13,22 @@ import {MatInputModule} from "@angular/material/input";
 import {MatButtonModule} from "@angular/material/button";
 import { BlackjackGameSummaryComponent } from './blackjack-game-summary/blackjack-game-summary.component';
 import {MatTableModule} from "@angular/material/table";
+import { BlackjackMultipleSessionsComponent } from './blackjack-multiple-sessions/blackjack-multiple-sessions.component';
+import { BlackjackSingleSessionComponent } from './blackjack-single-session/blackjack-single-session.component';
+import { NavComponent } from './nav/nav.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
   declarations: [
     AppComponent,
     BlackjackChartComponent,
     BlackjackMainComponent,
-    BlackjackGameSummaryComponent
+    BlackjackGameSummaryComponent,
+    BlackjackMultipleSessionsComponent,
+    BlackjackSingleSessionComponent,
+    NavComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +39,10 @@ import {MatTableModule} from "@angular/material/table";
     FormsModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
+    MatSidenavModule,
+    MatMenuModule
   ],
   providers: [],
   bootstrap: [AppComponent]

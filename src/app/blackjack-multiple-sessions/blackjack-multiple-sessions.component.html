@@ -1,0 +1,41 @@
+<div class="main">
+  <div class="probability">
+    <div class="probability-left">
+      <div class="probability-desc">
+        <h2>Simulate multiple blackjack sessions and get success probability</h2>
+        <p>Here, you can simulate multiple blackjack sessions.</p>
+        <p>Provide information about a single session, along with the number of iterations (sessions) you wish to simulate. More sessions will produce more accurate results.</p>
+        <p>The simulation will run, and you will get the probability of a single session being successful (reaching your desired goal), along with the average amount of games played per session. </p>
+      </div>
+      <form class="form">
+        <div class="left-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Initial Balance" type="number" [(ngModel)]="getProbabilityInformationDto.InitialBalance" name="initialBalance">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Betting Amount" type="number" [(ngModel)]="getProbabilityInformationDto.BettingAmount" name="bettingAmount">
+          </mat-form-field>
+        </div>
+
+        <div class="right-form">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Goal" type="number" [(ngModel)]="getProbabilityInformationDto.Goal" name="goal">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Iterations" type="number" [(ngModel)]="getProbabilityInformationDto.Iterations" name="iterations">
+          </mat-form-field>
+        </div>
+
+
+        <button mat-raised-button color="primary" (click)="onMultipleSessionsSubmit()">Simulate sessions</button>
+      </form>
+    </div>
+    <div class="probability-right">
+      <p *ngIf="probabilityLoading">Loading...</p>
+      <p *ngIf="!probabilityLoading && probabilityInformation">Probability of success: {{probabilityInformation.probability}}%</p>
+      <p *ngIf="!probabilityLoading && probabilityInformation">Average rounds played: {{probabilityInformation.averageRoundsPlayed}}</p>
+    </div>
+  </div>
+</div>

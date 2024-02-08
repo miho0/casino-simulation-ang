@@ -1,0 +1,24 @@
+.icon {
+  font-size: 2rem;
+  cursor: pointer;
+}
+
+.main-content {
+  height: 90vh;
+}
+
+.menu {
+  width: 200px;
+}
+
+.menu-main {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  font-size: 1.2rem;
+}
+
+.menu-item {
+  text-decoration: none;
+}
